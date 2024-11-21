@@ -41,6 +41,14 @@
     },
     "slug": {
       "type": "uid"
+    },
+    "isPopular": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "name": "isPopular",
+      "label": "Is Popular"
     }
+    
   }
 }
