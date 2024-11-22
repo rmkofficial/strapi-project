@@ -1,0 +1,50 @@
+{
+  "collectionName": "orders",
+  "info": {
+    "name": "Order",
+    "description": "",
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "userName": {
+      "type": "string",
+      "required": true
+    },
+    "userEmail": {
+      "type": "email",
+      "required": true
+    },
+    "userPhone": {
+      "type": "string",
+      "required": true
+    },
+    "userTC": {
+      "type": "string",
+      "required": true
+    },
+    "userBirthDate": {
+      "type": "date",
+      "required": true
+    },
+    "course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course.course"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "completed", "failed"],
+      "default": "pending"
+    },
+    "paymentId": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

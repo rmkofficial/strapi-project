@@ -396,6 +396,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
       'api::course.course'
     > &
       Schema.Attribute.Private;
+    orders: Schema.Attribute.Relation<'oneToMany', 'api::order.order'>;
     price: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     scope: Schema.Attribute.Blocks;
@@ -408,41 +409,38 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiPopularCoursePopularCourse
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'popular_courses';
+export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
+  collectionName: 'orders';
   info: {
-    displayName: 'Popular Courses';
-    pluralName: 'popular-courses';
-    singularName: 'popular-course';
+    description: '';
+    displayName: 'Order';
+    name: 'Order';
+    pluralName: 'orders';
+    singularName: 'order';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
+    course: Schema.Attribute.Relation<'manyToOne', 'api::course.course'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Blocks;
-    image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::popular-course.popular-course'
-    > &
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'> &
       Schema.Attribute.Private;
-    price: Schema.Attribute.Decimal;
+    paymentId: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    scope: Schema.Attribute.Blocks;
-    slug: Schema.Attribute.UID;
-    target_audience: Schema.Attribute.Blocks;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    status: Schema.Attribute.Enumeration<['pending', 'completed', 'failed']> &
+      Schema.Attribute.DefaultTo<'pending'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    userBirthDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    userEmail: Schema.Attribute.Email & Schema.Attribute.Required;
+    userName: Schema.Attribute.String & Schema.Attribute.Required;
+    userPhone: Schema.Attribute.String & Schema.Attribute.Required;
+    userTC: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -956,7 +954,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::course.course': ApiCourseCourse;
-      'api::popular-course.popular-course': ApiPopularCoursePopularCourse;
+      'api::order.order': ApiOrderOrder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

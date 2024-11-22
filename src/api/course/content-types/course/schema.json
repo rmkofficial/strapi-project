@@ -48,7 +48,11 @@
       "default": false,
       "name": "isPopular",
       "label": "Is Popular"
+    },
+    "orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order.order"
     }
-    
   }
 }
