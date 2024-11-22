@@ -35,7 +35,8 @@
     "course": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::course.course"
+      "target": "api::course.course",
+      "inversedBy": "orders"
     },
     "status": {
       "type": "enumeration",
