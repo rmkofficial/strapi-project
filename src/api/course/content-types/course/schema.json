@@ -4,7 +4,7 @@
   "info": {
     "singularName": "course",
     "pluralName": "courses",
-    "displayName": "courses ",
+    "displayName": "Courses",
     "description": ""
   },
   "options": {
@@ -26,12 +26,7 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "target_audience": {
       "type": "blocks"
@@ -52,7 +47,8 @@
     "orders": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::order.order"
+      "target": "api::order.order",
+      "mappedBy": "course"
     }
   }
 }

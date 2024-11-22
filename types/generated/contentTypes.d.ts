@@ -373,7 +373,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
   collectionName: 'courses';
   info: {
     description: '';
-    displayName: 'courses ';
+    displayName: 'Courses';
     pluralName: 'courses';
     singularName: 'course';
   };
