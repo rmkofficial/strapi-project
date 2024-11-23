@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = {
     routes: [
         {
@@ -5,7 +7,7 @@ module.exports = {
             path: "/orders",
             handler: "order.create",
             config: {
-                auth: false, // Gerekirse true yapabilirsiniz
+                auth: false, // Kimlik doğrulama gerekirse true yapabilirsiniz
             },
         },
     ],

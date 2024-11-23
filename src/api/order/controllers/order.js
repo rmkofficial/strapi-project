@@ -4,36 +4,18 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
     async create(ctx) {
-        const {
-            userName,
-            userEmail,
-            userPhone,
-            userTC,
-            userBirthDate,
-            course,
-            paymentId,
-        } = ctx.request.body;
+        const { userName, userEmail, userPhone, userTC, userBirthDate, course, paymentId } =
+            ctx.request.body;
 
-        if (
-            !userName ||
-            !userEmail ||
-            !userPhone ||
-            !userTC ||
-            !userBirthDate ||
-            !course ||
-            !paymentId
-        ) {
+        if (!userName || !userEmail || !userPhone || !userTC || !userBirthDate || !course || !paymentId) {
             return ctx.badRequest("Eksik bilgiler sağlandı.");
         }
 
         try {
             // İlgili kursu kontrol edin
-            const courseData = await strapi.entityService.findOne(
-                "api::course.course",
-                course
-            );
+            const courseEntry = await strapi.entityService.findOne("api::course.course", course);
 
-            if (!courseData) {
+            if (!courseEntry) {
                 return ctx.notFound("Kurs bulunamadı.");
             }
 
@@ -47,7 +29,6 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
                     userBirthDate,
                     course,
                     paymentId,
-                    status: "pending",
                 },
             });
 
@@ -56,5 +37,5 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
             console.error("Sipariş oluşturulurken bir hata oluştu:", error);
             return ctx.internalServerError("Sipariş oluşturulamadı.");
         }
-    },
+    }
 }));

@@ -2,7 +2,7 @@
   "collectionName": "orders",
   "info": {
     "name": "Order",
-    "description": "",
+    "description": "Sipariş kayıtları",
     "singularName": "order",
     "pluralName": "orders",
     "displayName": "Order"
@@ -10,7 +10,6 @@
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
   "attributes": {
     "userName": {
       "type": "string",

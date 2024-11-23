@@ -412,7 +412,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
 export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
   collectionName: 'orders';
   info: {
-    description: '';
+    description: 'Sipari\u015F kay\u0131tlar\u0131';
     displayName: 'Order';
     name: 'Order';
     pluralName: 'orders';
