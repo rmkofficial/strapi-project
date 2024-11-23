@@ -8,7 +8,7 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
   async create(ctx) {
-    const { userName, userEmail, userPhone, userTC, userBirthDate, course, paymentId } = ctx.request.body;
+    const { userName, userEmail, userPhone, userTC, userBirthDate, course, paymentId } = ctx.request.body.data;
 
     // Boş alan kontrolü
     if (!userName || !userEmail || !userPhone || !userTC || !userBirthDate || !course || !paymentId) {
