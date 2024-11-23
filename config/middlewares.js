@@ -5,6 +5,7 @@ module.exports = [
     name: 'strapi::security',
     config: {
       contentSecurityPolicy: {
+        useDefaults: true,
         directives: {
           'script-src': ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net'],
           'img-src': ["'self'", 'data:', 'blob:', 'res.cloudinary.com'],
@@ -16,8 +17,8 @@ module.exports = [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['*'], // Tüm kaynaklara izin ver. Dilerseniz frontend URL'nizi belirtebilirsiniz.
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD'], // İzin verilen HTTP metotları
+      origin: ['http://localhost:3000'], // Sadece frontend URL'nizi izinli yapın
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD'],
     },
   },
   'strapi::poweredBy',
