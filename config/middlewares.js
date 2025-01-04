@@ -16,8 +16,10 @@ module.exports = [
   {
     name: 'strapi::cors',
     config: {
-      enabled: true,
-      origin: ['http://localhost:3000', 'https://www.mtkakademi.com',], // Sadece frontend URL'nizi izinli yapın
+      origin: [
+        'http://localhost:3000', // Geliştirme ortamı
+        'https://www.mtkakademi.com', // Canlı ortam
+      ],
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD'],
     },
   },

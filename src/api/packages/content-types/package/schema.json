@@ -1,34 +1,32 @@
 {
-    "kind": "collectionType",
-    "collectionName": "packages",
-    "info": {
-      "singularName": "package",
-      "pluralName": "packages",
-      "displayName": "Packages",
-      "description": "Kurslar için paketler"
+  "kind": "collectionType",
+  "collectionName": "packages",
+  "info": {
+    "singularName": "package",
+    "pluralName": "packages",
+    "displayName": "Packages",
+    "description": "Packages for courses"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
     },
-    "options": {
-      "draftAndPublish": true
+    "price": {
+      "type": "decimal",
+      "required": true
     },
-    "pluginOptions": {},
-    "attributes": {
-      "name": {
-        "type": "string",
-        "required": true
-      },
-      "price": {
-        "type": "decimal",
-        "required": true
-      },
-      "description": {
-        "type": "text"
-      },
-      "course": {
-        "type": "relation",
-        "relation": "manyToOne",
-        "target": "api::course.course",
-        "inversedBy": "packages"
-      }
+    "description": {
+      "type": "text"
+    },
+    "course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course.course",
+      "inversedBy": "packages"
     }
   }
-  
+}
