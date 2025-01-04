@@ -49,6 +49,12 @@
       "relation": "oneToMany",
       "target": "api::order.order",
       "mappedBy": "course"
+    },
+    "packages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::package.package",
+      "mappedBy": "course"
     }
   }
 }

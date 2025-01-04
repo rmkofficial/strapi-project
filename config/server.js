@@ -4,7 +4,7 @@ module.exports = ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS', ['myKeyA', 'myKeyB']), // Güvenlik anahtarları
   },
-  url: env('SERVER_URL', 'https://strapi-project-xi2f.onrender.com'), // Public URL
+  url: env('SERVER_URL', 'https://strapi-project-xi2f.onrender.com', 'http://localhost:1337'), // Public URL
   webhooks: {
     populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false), // Webhook ilişkileri
   },
