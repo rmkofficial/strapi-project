@@ -397,7 +397,9 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     orders: Schema.Attribute.Relation<'oneToMany', 'api::order.order'>;
-    packages: Schema.Attribute.Relation<'oneToMany', 'api::package.package'>;
+    package: Schema.Attribute.Enumeration<['Basic', 'Pro', 'Premium']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Basic'>;
     price: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     scope: Schema.Attribute.Blocks;
@@ -442,38 +444,6 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     userName: Schema.Attribute.String & Schema.Attribute.Required;
     userPhone: Schema.Attribute.String & Schema.Attribute.Required;
     userTC: Schema.Attribute.String & Schema.Attribute.Required;
-  };
-}
-
-export interface ApiPackagePackage extends Struct.CollectionTypeSchema {
-  collectionName: 'packages';
-  info: {
-    description: 'Kurslar i\u00E7in paketler';
-    displayName: 'Packages';
-    pluralName: 'packages';
-    singularName: 'package';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    course: Schema.Attribute.Relation<'manyToOne', 'api::course.course'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::package.package'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    price: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
   };
 }
 
@@ -988,7 +958,6 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::course.course': ApiCourseCourse;
       'api::order.order': ApiOrderOrder;
-      'api::package.package': ApiPackagePackage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
