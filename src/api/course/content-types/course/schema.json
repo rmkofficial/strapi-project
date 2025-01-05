@@ -40,9 +40,7 @@
     "isPopular": {
       "type": "boolean",
       "required": false,
-      "default": false,
-      "name": "isPopular",
-      "label": "Is Popular"
+      "default": false
     },
     "orders": {
       "type": "relation",
@@ -50,13 +48,11 @@
       "target": "api::order.order",
       "mappedBy": "course"
     },
-    "package": {
-      "type": "enumeration",
-      "enum": ["Basic", "Pro", "Premium"],
-      "required": true,
-      "default": "Basic",
-      "name": "Package",
-      "label": "Package"
+    "packages": {
+      "type": "component",
+      "repeatable": true,
+      "component": "packages.package",
+      "required": false
     }
   }
 }
