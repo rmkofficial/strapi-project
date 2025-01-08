@@ -397,9 +397,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     orders: Schema.Attribute.Relation<'oneToMany', 'api::order.order'>;
-    package: Schema.Attribute.Enumeration<['Basic', 'Pro', 'Premium']> &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'Basic'>;
+    packages: Schema.Attribute.Component<'packages.package', true>;
     price: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     scope: Schema.Attribute.Blocks;
