@@ -1,15 +1,4 @@
 {
-  "collectionName": "orders",
-  "info": {
-    "name": "Order",
-    "description": "Orders collection",
-    "singularName": "order",
-    "pluralName": "orders",
-    "displayName": "Order"
-  },
-  "options": {
-    "draftAndPublish": false
-  },
   "attributes": {
     "userName": {
       "type": "string",
@@ -36,13 +25,9 @@
       "relation": "manyToOne",
       "target": "api::course.course"
     },
-    "userPackage": {
-      "type": "json"
-    },
-    "status": {
-      "type": "enumeration",
-      "enum": ["pending", "completed", "failed"],
-      "default": "pending"
+    "package": {
+      "type": "json",  
+      "required": true
     },
     "paymentId": {
       "type": "string",

@@ -15,15 +15,25 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       userTC,
       userBirthDate,
       course,
-      userPackage,
+      package: userPackage, // Paket bilgisi
       paymentId,
     } = ctx.request.body.data;
 
-    if (!userName || !userEmail || !userPhone || !userTC || !userBirthDate || !course || !userPackage || !paymentId) {
+    if (
+      !userName ||
+      !userEmail ||
+      !userPhone ||
+      !userTC ||
+      !userBirthDate ||
+      !course ||
+      !userPackage || // Paket kontrolü
+      !paymentId
+    ) {
       return ctx.badRequest("Eksik bilgiler sağlandı.");
     }
 
     try {
+      // Kursu slug ile bul
       const foundCourse = await strapi.entityService.findMany("api::course.course", {
         filters: { slug: course },
         limit: 1,
@@ -35,6 +45,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
 
       const courseId = foundCourse[0].id;
 
+      // Siparişi oluştur
       const order = await strapi.entityService.create("api::order.order", {
         data: {
           userName,
@@ -43,7 +54,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           userTC,
           userBirthDate,
           course: courseId,
-          userPackage,
+          package: userPackage, 
           paymentId,
         },
       });
