@@ -1,16 +1,15 @@
 {
-  "kind": "collectionType",
   "collectionName": "courses",
   "info": {
+    "name": "Course",
+    "description": "Courses collection",
     "singularName": "course",
     "pluralName": "courses",
-    "displayName": "Courses",
-    "description": ""
+    "displayName": "Course"
   },
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string",
@@ -25,8 +24,7 @@
     "image": {
       "type": "media",
       "multiple": true,
-      "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": ["images", "files"]
     },
     "target_audience": {
       "type": "blocks"
@@ -35,24 +33,22 @@
       "type": "blocks"
     },
     "slug": {
-      "type": "uid"
+      "type": "uid",
+      "targetField": "title"
     },
     "isPopular": {
       "type": "boolean",
-      "required": false,
       "default": false
     },
     "orders": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::order.order",
-      "mappedBy": "course"
+      "target": "api::order.order"
     },
     "packages": {
       "type": "component",
       "repeatable": true,
-      "component": "packages.package",
-      "required": false
+      "component": "packages.package"
     }
   }
 }

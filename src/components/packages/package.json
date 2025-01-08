@@ -1,21 +1,21 @@
 {
-    "collectionName": "packages",
-    "info": {
-      "displayName": "Package",
-      "description": "Course package information"
+  "collectionName": "packages",
+  "info": {
+    "name": "Package",
+    "displayName": "Package",
+    "description": "Course package information"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
     },
-    "attributes": {
-      "title": {
-        "type": "string",
-        "required": true
-      },
-      "description": {
-        "type": "text"
-      },
-      "price": {
-        "type": "decimal",
-        "required": true
-      }
+    "description": {
+      "type": "text"
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
     }
   }
-  
+}

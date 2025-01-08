@@ -5,6 +5,7 @@ export interface PackagesPackage extends Struct.ComponentSchema {
   info: {
     description: 'Course package information';
     displayName: 'Package';
+    name: 'Package';
   };
   attributes: {
     description: Schema.Attribute.Text;

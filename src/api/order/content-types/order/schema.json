@@ -2,7 +2,7 @@
   "collectionName": "orders",
   "info": {
     "name": "Order",
-    "description": "Sipariş kayıtları",
+    "description": "Orders collection",
     "singularName": "order",
     "pluralName": "orders",
     "displayName": "Order"
@@ -34,12 +34,10 @@
     "course": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::course.course",
-      "inversedBy": "orders"
+      "target": "api::course.course"
     },
-    "package": {
-      "type": "json",
-      "required": true
+    "userPackage": {
+      "type": "json"
     },
     "status": {
       "type": "enumeration",

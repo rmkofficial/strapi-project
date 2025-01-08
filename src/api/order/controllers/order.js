@@ -15,43 +15,26 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       userTC,
       userBirthDate,
       course,
-      userPackage, // Paket bilgisi
+      userPackage,
       paymentId,
     } = ctx.request.body.data;
 
-    // Boş alan kontrolü
-    if (
-      !userName ||
-      !userEmail ||
-      !userPhone ||
-      !userTC ||
-      !userBirthDate ||
-      !course ||
-      !userPackage || // Paket kontrolü
-      !paymentId
-    ) {
+    if (!userName || !userEmail || !userPhone || !userTC || !userBirthDate || !course || !userPackage || !paymentId) {
       return ctx.badRequest("Eksik bilgiler sağlandı.");
     }
 
     try {
-      console.log("Gönderilen veri:", ctx.request.body.data); // Gelen veriyi logla
-
-      // Kursu slug üzerinden bul
       const foundCourse = await strapi.entityService.findMany("api::course.course", {
-        filters: { slug: course }, // Slug ile filtre
-        limit: 1, // Tek kurs almak için limit
+        filters: { slug: course },
+        limit: 1,
       });
 
       if (!foundCourse || foundCourse.length === 0) {
-        console.log("Slug ile kurs bulunamadı:", course);
         return ctx.notFound("Kurs bulunamadı.");
       }
 
       const courseId = foundCourse[0].id;
 
-      console.log("Bulunan kurs ID'si:", courseId); // Kurs ID'sini logla
-
-      // Siparişi oluştur
       const order = await strapi.entityService.create("api::order.order", {
         data: {
           userName,
@@ -60,12 +43,10 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           userTC,
           userBirthDate,
           course: courseId,
-          userPackage, // Paket bilgisi kaydediliyor
+          userPackage,
           paymentId,
         },
       });
-
-      console.log("Sipariş başarıyla oluşturuldu:", order); // Sipariş detaylarını logla
 
       return ctx.created(order);
     } catch (error) {

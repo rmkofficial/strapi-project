@@ -372,8 +372,9 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
   collectionName: 'courses';
   info: {
-    description: '';
-    displayName: 'Courses';
+    description: 'Courses collection';
+    displayName: 'Course';
+    name: 'Course';
     pluralName: 'courses';
     singularName: 'course';
   };
@@ -385,10 +386,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Blocks;
-    image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
+    image: Schema.Attribute.Media<'images' | 'files', true>;
     isPopular: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -401,7 +399,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
     price: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     scope: Schema.Attribute.Blocks;
-    slug: Schema.Attribute.UID;
+    slug: Schema.Attribute.UID<'title'>;
     target_audience: Schema.Attribute.Blocks;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -413,7 +411,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
 export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
   collectionName: 'orders';
   info: {
-    description: 'Sipari\u015F kay\u0131tlar\u0131';
+    description: 'Orders collection';
     displayName: 'Order';
     name: 'Order';
     pluralName: 'orders';
@@ -440,6 +438,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     userBirthDate: Schema.Attribute.Date & Schema.Attribute.Required;
     userEmail: Schema.Attribute.Email & Schema.Attribute.Required;
     userName: Schema.Attribute.String & Schema.Attribute.Required;
+    userPackage: Schema.Attribute.JSON;
     userPhone: Schema.Attribute.String & Schema.Attribute.Required;
     userTC: Schema.Attribute.String & Schema.Attribute.Required;
   };
