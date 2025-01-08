@@ -1,4 +1,14 @@
 {
+  "info": {
+    "name": "Order",
+    "description": "Sipariş kayıtları",
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
   "attributes": {
     "userName": {
       "type": "string",
@@ -26,7 +36,7 @@
       "target": "api::course.course"
     },
     "package": {
-      "type": "json",  
+      "type": "json",
       "required": true
     },
     "paymentId": {
